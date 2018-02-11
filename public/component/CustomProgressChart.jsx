@@ -29,7 +29,7 @@ class CustomProgressChart extends React.Component {
                 cx={85} 
                 cy={85}         
                 outerRadius={80} 
-                innerRadius={78} 
+                innerRadius={77.5} 
                 strokeWidth={0}
                 fill="#8884d8"
                 startAngle={90}

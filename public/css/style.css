@@ -43,7 +43,7 @@ body {
 
 .top_section {
     width: 49%;
-    height: 430px;
+    height: 460px;
     background-color: #152630;
     display: flex;
     justify-content: space-around;
@@ -127,7 +127,6 @@ li:active {
     justify-content: flex-start;
     color: #359971;
     font-size: 10px;
-    color: #359971;
 }
 
 .large {
@@ -167,4 +166,32 @@ li:active {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.border_left_right {
+    border-left: 1px solid #84888B;
+    border-right: 1px solid #84888B;
+}
+
+.services_section {
+    width: 94%;
+    height: 33.3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.border_top_bottom {
+    border-top: 1px solid #162B33;
+    border-bottom: 1px solid #162B33;
+    /* height: 35%; */
+}
+
+.blue_sqaure {
+    width: 54px;
+    height: 54px;
+    background-color: #183739;
+    border: 1px solid #1A4841;
 }

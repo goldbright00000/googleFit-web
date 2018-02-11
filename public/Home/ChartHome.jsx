@@ -3,6 +3,7 @@ import CustomAreaChart from '../component/CustomAreaChart.jsx';
 import CustomBarChart from '../component/CustomBarChart.jsx';
 import CustomPieChart from '../component/CustomPieChart.jsx';
 import CustomProgressChart from '../component/CustomProgressChart.jsx';
+import CustomProgressSmallChart from '../component/CustomProgressSmallChart.jsx';
 
 class ChartHome extends React.Component {
 
@@ -64,7 +65,70 @@ class ChartHome extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className='top_section'></div>
+                    <div className='top_section'>
+                        <div className='row_section' style={{height: '37%', paddingLeft: 24, paddingRight: 24}}>
+                            <div className='part_section'>
+                                <span style={{fontSize: 22, color: '#359971', paddingTop: 8}}>My Goal This Month</span>
+                                <div style={{ width: '100%', height: 120, display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginLeft: -10}}>
+                                    <CustomProgressSmallChart />
+                                    <span style={{color: 'white', fontSize: 34, marginLeft: 15}}>28<span className='small'>/Total</span> </span>
+                                </div>
+                            </div>
+                            <div className='part_section'>
+                                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                        <div className='number_letter' style={{marginTop: 32}}>
+                                            <span style={{color: 'white', fontSize: 24}}>18</span>
+                                            <span style={{color: '#359971',fontSize: 12}}>Active</span>
+                                        </div>
+                                        <div className='number_letter border_left_right' style={{marginTop: 32}}>
+                                            <span style={{color: 'white', fontSize: 24}}>4</span>
+                                            <span style={{color: '#84888B',fontSize: 12}}>IDL</span>
+                                        </div>
+                                        <div className='number_letter' style={{marginTop: 32}}>
+                                            <span style={{color: 'white', fontSize: 24}}>4</span>
+                                            <span style={{color: '#A14A43',fontSize: 12}}>Stressed</span>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style={{width: '100%', height: 14, display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                            <div style={{width: '33%', height: 7, borderBottom: 1, borderBottomColor: '#359971', borderBottomStyle: 'solid'}}></div>
+                            <span style={{color: '#A29349',fontSize: 12, }}>Most Active Services</span>
+                            <div style={{width: '33%', height: 7, borderBottom: 1, borderBottomColor: '#359971', borderBottomStyle: 'solid'}}></div>                             
+                        </div>
+                        <div className='row_section' style={{flexDirection: 'column', alignItems: 'center'}}>
+                            <div className='services_section'>
+                                <div className='part_section' style={{flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className='blue_sqaure' style={{visibility: 'hidden'}}></div>
+                                    <span style={{fontSize: 20, paddingLeft: 13}}>Weight</span>
+                                </div>
+                                <div className='part_section' style={{flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className='blue_sqaure'></div>
+                                    <span style={{fontSize: 20, paddingLeft: 13}}>Calories</span>
+                                </div>
+                            </div>
+                            <div className='services_section border_top_bottom'>
+                                <div className='part_section' style={{flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className='blue_sqaure'></div>
+                                    <span style={{fontSize: 20, paddingLeft: 13}}>Excersices</span>
+                                </div>
+                                <div className='part_section' style={{flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className='blue_sqaure'></div>
+                                    <span style={{fontSize: 20, paddingLeft: 13}}>Steps</span>
+                                </div>
+                            </div>
+                            <div className='services_section'>
+                                <div className='part_section' style={{flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className='blue_sqaure'></div>
+                                    <span style={{fontSize: 20, paddingLeft: 13}}>Weight</span>
+                                </div>
+                                <div className='part_section' style={{flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className='blue_sqaure'></div>
+                                    <span style={{fontSize: 20, paddingLeft: 13}}>Weight</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='section'>
                     <div className='bottom_section'>
