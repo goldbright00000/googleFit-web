@@ -20,12 +20,13 @@ class App extends React.Component {
         this.responseGooglelogin = this.responseGooglelogin.bind(this);
         this.responseGoogle = this.responseGoogle.bind(this);
         this.setAuth = this.setAuth.bind(this);
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+        this.forceUpdate = this.forceUpdate.bind(this);
     };
 
     componentWillMount () {
         const access_token = localStorage.getItem('@access_token');
         this.setState({access_token: access_token});
-        // localStorage.setItem('@access_token', 'this');
     }
 
     responseGooglelogin (googleUser) {
@@ -47,6 +48,10 @@ class App extends React.Component {
         this.setState({auth: false});
     }
 
+    forceUpdateHandler(){
+        window.location="http://localhost:3000";
+    };
+
     render() {
 
         return (
@@ -55,7 +60,7 @@ class App extends React.Component {
 						onUpdateSigninStatus={this.responseGoogle}
 						onInitFailure={ arg => console.log(arg) } >
                     { this.state.auth ?
-					    <div><GoogleLogout backgroundColor='#13212A'/><ChartHome setAuth={ this.setAuth } access_token={ this.state.access_token } /></div>
+					    <div><div className='top_buttons'><button onClick={this.forceUpdateHandler}>Refresh</button><GoogleLogout backgroundColor='#13212A'/></div><ChartHome setAuth={ this.setAuth } access_token={ this.state.access_token } /></div>
                         
 					:   <div className='login'><GoogleLogin onLoginSuccess={this.responseGooglelogin} backgroundColor='#2B8E71'/></div>
                     }

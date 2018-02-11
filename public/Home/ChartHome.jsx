@@ -1,6 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import CustomAreaChart from '../component/CustomAreaChart.jsx';
-import CustomBarChart from '../component/CustomBarChart.jsx';
+import CustomDistanceBarChart from '../component/CustomDistanceBarChart.jsx';
+import CustomCalorieBarChart from '../component/CustomCalorieBarChart.jsx';
 import CustomPieChart from '../component/CustomPieChart.jsx';
 import CustomProgressChart from '../component/CustomProgressChart.jsx';
 import CustomProgressSmallChart from '../component/CustomProgressSmallChart.jsx';
@@ -11,9 +13,12 @@ class ChartHome extends React.Component {
         super(props);
 
         this.state = {
-            access_token: ''
+            access_token: '',
+            data: []
         };
         
+        this.getFitnessData = this.getFitnessData.bind(this);
+        this.callback = this.callback.bind(this);
         this.setAuth = this.setAuth.bind(this);
     }
 
@@ -22,7 +27,49 @@ class ChartHome extends React.Component {
     }
 
     componentWillMount () {
+        this.getFitnessData(this.props.access_token);
         this.setState({access_token: this.props.access_token});
+        // this.getFitnessData(this.props.access_token);
+    }
+
+    getFitnessData(accessToken){
+
+		var endTimeMillis = new Date().getTime();
+		var startTimeMillis = endTimeMillis - 604800000;
+		var dataTypeName = 'com.google.step_count.delta';
+		
+		var data = {
+			"aggregateBy": [{"dataTypeName":dataTypeName}],
+			"bucketByTime":{"durationMillis":86400000},
+			"startTimeMillis":startTimeMillis,
+			"endTimeMillis":endTimeMillis
+		};
+
+		var axiosconfig = {
+			headers: { Authorization: `Bearer ${accessToken}`,
+						'content-type': 'application/json'},
+		};
+
+		axios.post('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate?alt=json', data, axiosconfig)
+        .then(response => this.callback(response))
+		.catch(error => this.setAuth(error));
+    }
+    
+    callback (response) {
+        var data = response.data.bucket;
+        var result = [];
+        var count = data.length;
+        for (let i = 0; i < count; i++) {
+            if (data[i].dataset[0].point.length == 0) {
+                result[i] = 0;
+            } else {
+                result[i] = data[i].dataset[0].point[0].value[0].intVal;
+            }
+        }
+
+        this.setState({data: result});
+        console.log(result);
+        
     }
 
     render() {
@@ -43,7 +90,7 @@ class ChartHome extends React.Component {
                             <div className='part_section'>
                                 <span className='large'>TODAY</span>
                                 <span className='medium'>Physical Activity</span>
-                                <span style={{color: 'white', fontSize: 32, marginLeft: -10}}>123<span className='medium'>/</span><span className='small'>number of steps yesterday</span> </span>
+                                <span style={{color: 'white', fontSize: 32, marginLeft: -10}}>{this.state.data[5]}<span className='medium'>/</span><span className='small'>number of steps yesterday</span> </span>
                             </div>
                             <div className='part_section'>
                                 <span className='medium' style={{marginTop: 6, marginLeft: 30}}>Weight</span>
@@ -53,7 +100,7 @@ class ChartHome extends React.Component {
                         <div className='row_section'>
                             <div className='part_section'>
                                 <span style={{paddingLeft: 28, paddingBottom: 30}} className='medium'>Last 7 Days</span>
-                                <CustomBarChart />
+                                <CustomDistanceBarChart setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.distance.delta'}/>
                             </div>
                             <div className='part_section'>
                                 <span style={{paddingLeft: 28, paddingBottom: 5}} className='medium'>Calories in/out</span>
@@ -156,7 +203,7 @@ class ChartHome extends React.Component {
                         <div style={{width: 74, height: 30, backgroundColor: '#F3C031', borderRadius: 15, textAlign: 'center', paddingTop: 5, margin: 5}}>
                             <span style={{color: '#43432C',fontSize: 14, marginTop: 0}}>32%</span>                            
                         </div>
-                        <CustomBarChart />
+                        <CustomCalorieBarChart  setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.calories.expended'}/>
                         <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Wait Time Today (ms) -</span>
                     </div>
                     <div className='bottom_section'>

@@ -2,19 +2,45 @@ body {
     background-color: #13212A;
 }
 
-.react-google-oauth-button-logout {
+.top_buttons {
     float: right;
     position: relative;
     z-index: 10;
-    margin-top: 20px;
+    display: flex;
+    margin-top: 10px;
+
+}
+
+button {
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    color: #359971;
+    font-size: 16px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+.react-google-oauth-button-logout {
+    
+    width: 100px !important;
     color: #359971;
 }
 
-#app > div > div.react-google-oauth-button-main.react-google-oauth-button-logout {
+#app > div > div > div.react-google-oauth-button-main.react-google-oauth-button-logout {
     color: #359971 !important;
 }
 
-#app > div > div.react-google-oauth-button-main.react-google-oauth-button-logout > div > div {
+#app > div > div > div.react-google-oauth-button-main.react-google-oauth-button-logout > div > div {
     display: none;
 }
 
