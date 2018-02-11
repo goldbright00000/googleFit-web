@@ -86,6 +86,7 @@ class CustomDistanceBarChart extends React.Component {
         }
 
         this.setState({data: chartData});
+        console.log("updated distance data.");
         
     }
 

@@ -49,7 +49,9 @@ class App extends React.Component {
     }
 
     forceUpdateHandler(){
-        window.location="http://localhost:3000";
+        // window.location="http://localhost:3000";
+        this.refs.ChartHome.componentWillMount();
+        this.refs.ChartHome.refresh();
     };
 
     render() {
@@ -60,7 +62,7 @@ class App extends React.Component {
 						onUpdateSigninStatus={this.responseGoogle}
 						onInitFailure={ arg => console.log(arg) } >
                     { this.state.auth ?
-					    <div><div className='top_buttons'><button onClick={this.forceUpdateHandler}>Refresh</button><GoogleLogout backgroundColor='#13212A'/></div><ChartHome setAuth={ this.setAuth } access_token={ this.state.access_token } /></div>
+					    <div><div className='top_buttons'><button onClick={this.forceUpdateHandler}>Refresh</button><GoogleLogout backgroundColor='#13212A'/></div><ChartHome ref='ChartHome' setAuth={ this.setAuth } access_token={ this.state.access_token } /></div>
                         
 					:   <div className='login'><GoogleLogin onLoginSuccess={this.responseGooglelogin} backgroundColor='#2B8E71'/></div>
                     }

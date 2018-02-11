@@ -86,6 +86,7 @@ class CustomAreaChart extends React.Component {
         }
 
         this.setState({data: chartData});
+        console.log("updated weight data.");
         
     }
 

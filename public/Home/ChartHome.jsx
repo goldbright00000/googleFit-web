@@ -20,6 +20,16 @@ class ChartHome extends React.Component {
         this.getFitnessData = this.getFitnessData.bind(this);
         this.callback = this.callback.bind(this);
         this.setAuth = this.setAuth.bind(this);
+        this.refresh = this.refresh.bind(this);
+    }
+
+    refresh () {
+        this.refs.CustomAreaChart.componentWillMount();
+        this.refs.CustomDistanceBarChart.componentWillMount();
+        this.refs.CustomCalorieBarChart.componentWillMount();
+        // this.refs.CustomPieChart.componentWillMount();
+        // this.refs.CustomProgressChart.componentWillMount();
+        // this.refs.CustomProgressSmallChart.componentWillMount();
     }
 
     setAuth () {
@@ -68,7 +78,7 @@ class ChartHome extends React.Component {
         }
 
         this.setState({data: result});
-        console.log(result);
+        console.log("updated step data.");
         
     }
 
@@ -94,17 +104,17 @@ class ChartHome extends React.Component {
                             </div>
                             <div className='part_section'>
                                 <span className='medium' style={{marginTop: 6, marginLeft: 30}}>Weight</span>
-                                <CustomAreaChart setAuth={this.setAuth} access_token={this.state.access_token}/>
+                                <CustomAreaChart ref='CustomAreaChart' setAuth={this.setAuth} access_token={this.state.access_token}/>
                             </div>
                         </div>
                         <div className='row_section'>
                             <div className='part_section'>
                                 <span style={{paddingLeft: 28, paddingBottom: 30}} className='medium'>Last 7 Days</span>
-                                <CustomDistanceBarChart setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.distance.delta'}/>
+                                <CustomDistanceBarChart ref='CustomDistanceBarChart' setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.distance.delta'}/>
                             </div>
                             <div className='part_section'>
                                 <span style={{paddingLeft: 28, paddingBottom: 5}} className='medium'>Calories in/out</span>
-                                <CustomPieChart />
+                                <CustomPieChart ref='CustomPieChart' />
                                 <div style={{width: 180, height: 20, marginLeft: 40, marginTop: 12, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                                     <div style={{color: '#A29349',fontSize: 12, width: '47%', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><div style={{width: 20, height: 20, backgroundColor: '#C9CFD2', paddindRight: 5}}></div><span style={{ paddingTop: 2, paddingLeft: 5}}> Colories in</span></div>
                                     <div style={{color: '#697378',fontSize: 12, width: '47%', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><div style={{width: 20, height: 20, backgroundColor: '#20CC7E', paddindRight: 5}}></div><span style={{ paddingTop: 2, paddingLeft: 5}}> Colories in</span></div>
@@ -117,7 +127,7 @@ class ChartHome extends React.Component {
                             <div className='part_section'>
                                 <span style={{fontSize: 22, color: '#359971', paddingTop: 8}}>My Goal This Month</span>
                                 <div style={{ width: '100%', height: 120, display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginLeft: -10}}>
-                                    <CustomProgressSmallChart />
+                                    <CustomProgressSmallChart ref='CustomProgressSmallChart' />
                                     <span style={{color: 'white', fontSize: 34, marginLeft: 15}}>28<span className='small'>/Total</span> </span>
                                 </div>
                             </div>
@@ -180,7 +190,7 @@ class ChartHome extends React.Component {
                 <div className='section'>
                     <div className='bottom_section'>
                         <span style={{fontSize: 22, color: '#359971', paddingBottom: 15}}>Exercise Target</span>
-                        <CustomProgressChart />
+                        <CustomProgressChart ref='CustomProgressChart' />
                         <div className='number_letter' style={{marginTop: -80, paddingBottom: 100}}>
                             <span style={{color: 'white', fontSize: 34}}>402</span>
                             <span style={{color: '#697378',fontSize: 12, marginTop: -3}}>Total Tasks</span>
@@ -203,13 +213,13 @@ class ChartHome extends React.Component {
                         <div style={{width: 74, height: 30, backgroundColor: '#F3C031', borderRadius: 15, textAlign: 'center', paddingTop: 5, margin: 5}}>
                             <span style={{color: '#43432C',fontSize: 14, marginTop: 0}}>32%</span>                            
                         </div>
-                        <CustomCalorieBarChart  setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.calories.expended'}/>
+                        <CustomCalorieBarChart ref='CustomCalorieBarChart'  setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.calories.expended'}/>
                         <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Wait Time Today (ms) -</span>
                     </div>
                     <div className='bottom_section'>
                         <span style={{fontSize: 22, color: '#359971', paddingBottom: 0}}>Heart Rate</span>
                         <img src="../../assets/image/impulse.png" alt="" style={{ margin: 20}}/>
-                        <CustomAreaChart setAuth={this.setAuth} access_token={this.state.access_token}/>                        
+                        <CustomAreaChart ref='CustomAreaChart' setAuth={this.setAuth} access_token={this.state.access_token}/>                        
                         <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Failure Rate Today -</span>       
                     </div>
                 </div>

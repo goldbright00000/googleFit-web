@@ -86,6 +86,7 @@ class CustomCalorieBarChart extends React.Component {
         }
 
         this.setState({data: chartData});
+        console.log("updated calories data.");
         
     }
 
