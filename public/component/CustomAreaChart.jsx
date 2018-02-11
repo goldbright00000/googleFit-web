@@ -102,7 +102,7 @@ class CustomAreaChart extends React.Component {
                 <YAxis stroke='#31BC7F'/>
                 <CartesianGrid strokeDasharray="1 1" vertical={false} stroke='#31BC7F'/>
                 <Tooltip/>
-                <Area type='monotone' dataKey='val' stroke='#31BC7F' fill='#b1a41d' />
+                <Area type='monotone' dataKey='val' stroke='#31BC7F' fill='#b1a41d' dot={{ stroke: '#31BC7F', strokeWidth: 1, r: 2 }} activeDot={{r: 4}}/>
             </AreaChart>
 
         );
