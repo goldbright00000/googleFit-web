@@ -45,7 +45,12 @@ class CustomAreaChart extends React.Component {
 
     getFitnessData(accessToken){
 
-		var endTimeMillis = new Date().getTime();
+		var current = new Date();
+        var year = current.getFullYear();
+        var month = current.getMonth();
+        var date = current.getDate();
+
+		var endTimeMillis = new Date(year, month, (date+1)).getTime();
 		var startTimeMillis = endTimeMillis - 604800000;
 		var dataTypeName = 'com.google.weight';
 		

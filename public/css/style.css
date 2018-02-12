@@ -250,8 +250,4 @@ li:active {
     #app > div > div.container > div:nth-child(3) {
         padding-top: 0;
     }
-
-    #app > div > div.container > div:nth-child(2) > div:nth-child(1) > div.row_section.blue_line > div:nth-child(1) > span:nth-child(3) > span.small{
-        float: left;
-    }
 }

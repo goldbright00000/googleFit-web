@@ -45,7 +45,12 @@ class CustomCalorieBarChart extends React.Component {
 
     getFitnessData(accessToken){
 
-		var endTimeMillis = new Date().getTime();
+		var current = new Date();
+        var year = current.getFullYear();
+        var month = current.getMonth();
+        var date = current.getDate();
+
+		var endTimeMillis = new Date(year, month, (date+1)).getTime();
 		var startTimeMillis = endTimeMillis - 604800000;
 		var dataTypeName = this.props.dataTypeName;
 		
@@ -87,6 +92,7 @@ class CustomCalorieBarChart extends React.Component {
 
         this.setState({data: chartData});
         console.log("updated calories data.");
+        // console.log(data);
         
     }
 
@@ -97,14 +103,26 @@ class CustomCalorieBarChart extends React.Component {
     render() {
         return (
 
-            <BarChart width={270} height={130} data={this.state.data}
-                    margin={{top: 10, right: 20, left: -15, bottom: 0}}>
-                <XAxis stroke='#31BC7F' dataKey="name"/>
-                <YAxis stroke='#31BC7F'/>
-                <CartesianGrid strokeDasharray="1 1" vertical={false} stroke='#31BC7F'/>
-                <Tooltip cursor={{ stroke: 'white', strokeWidth: 1, fill: 'rgba(255,255,255,0.1)'}} />
-                <Bar dataKey="val" stroke='#31BC7F' fill="rgba(24,53,57,0.8)" />
-            </BarChart>
+            <div className='bottom_section'>
+                <span style={{fontSize: 22, color: '#359971', paddingBottom: 0}}>Calories In vs Out</span>
+                <span style={{color: 'white', fontSize: 32}}>741</span>
+                <span style={{color: '#A29349',fontSize: 12, marginTop: 0}}>Inactive Calories</span>
+                {/* <div style={{width: 74, height: 30, backgroundColor: '#F3C031', borderRadius: 15, textAlign: 'center', paddingTop: 5, margin: 5}}>
+                    <span style={{color: '#43432C',fontSize: 14, marginTop: 0}}>32%</span>                            
+                </div> */}
+                <span style={{color: 'white', fontSize: 12}}>736</span>
+                <BarChart width={270} height={130} data={this.state.data}
+                        margin={{top: 10, right: 20, left: -15, bottom: 0}}>
+                    <XAxis stroke='#31BC7F' dataKey="name"/>
+                    <YAxis stroke='#31BC7F'/>
+                    <CartesianGrid strokeDasharray="1 1" vertical={false} stroke='#31BC7F'/>
+                    <Tooltip cursor={{ stroke: 'white', strokeWidth: 1, fill: 'rgba(255,255,255,0.1)'}} />
+                    <Bar dataKey="val" stroke='#31BC7F' fill="rgba(24,53,57,0.8)" />
+                </BarChart>
+                <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Wait Time Today (ms) -</span>
+            </div>
+
+            
 
         );
     }

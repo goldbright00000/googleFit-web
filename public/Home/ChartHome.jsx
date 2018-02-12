@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import CustomAreaChart from '../component/CustomAreaChart.jsx';
+import CustomHeartRateAreaChart from '../component/CustomHeartRateAreaChart.jsx';
 import CustomDistanceBarChart from '../component/CustomDistanceBarChart.jsx';
 import CustomCalorieBarChart from '../component/CustomCalorieBarChart.jsx';
 import CustomPieChart from '../component/CustomPieChart.jsx';
@@ -25,6 +26,7 @@ class ChartHome extends React.Component {
 
     refresh () {
         this.refs.CustomAreaChart.componentWillMount();
+        this.refs.CustomHeartRateAreaChart.componentWillMount();
         this.refs.CustomDistanceBarChart.componentWillMount();
         this.refs.CustomCalorieBarChart.componentWillMount();
         // this.refs.CustomPieChart.componentWillMount();
@@ -44,7 +46,12 @@ class ChartHome extends React.Component {
 
     getFitnessData(accessToken){
 
-		var endTimeMillis = new Date().getTime();
+        var current = new Date();
+        var year = current.getFullYear();
+        var month = current.getMonth();
+        var date = current.getDate();
+
+		var endTimeMillis = new Date(year, month, (date+1)).getTime();
 		var startTimeMillis = endTimeMillis - 604800000;
 		var dataTypeName = 'com.google.step_count.delta';
 		
@@ -78,7 +85,8 @@ class ChartHome extends React.Component {
         }
 
         this.setState({data: result});
-        console.log("updated step data.");
+        // console.log("updated step data." + data);
+        // console.log(data);
         
     }
 
@@ -100,7 +108,7 @@ class ChartHome extends React.Component {
                             <div className='part_section'>
                                 <span className='large'>TODAY</span>
                                 <span className='medium'>Physical Activity</span>
-                                <span style={{color: 'white', fontSize: 32, marginLeft: -10}}>{this.state.data[5]}<span className='medium'>/</span><span className='small'>number of steps yesterday</span> </span>
+                                <span style={{color: 'white', fontSize: 32, marginLeft: 0}}>{this.state.data[6]}<span className='medium'>/</span><span className='small'><span style={{color: 'white'}}>{this.state.data[5]}</span> yesterday</span> </span>
                             </div>
                             <div className='part_section'>
                                 <span className='medium' style={{marginTop: 6, marginLeft: 30}}>Weight</span>
@@ -206,20 +214,21 @@ class ChartHome extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className='bottom_section'>
+                    {/* <div className='bottom_section'>
                         <span style={{fontSize: 22, color: '#359971', paddingBottom: 0}}>Calories In vs Out</span>
                         <span style={{color: 'white', fontSize: 32}}>23.5ms</span>
-                        <span style={{color: '#A29349',fontSize: 12, marginTop: 0}}>Task Wait Time</span>
+                        <span style={{color: '#A29349',fontSize: 12, marginTop: 0}}>Inactive Calories</span>
                         <div style={{width: 74, height: 30, backgroundColor: '#F3C031', borderRadius: 15, textAlign: 'center', paddingTop: 5, margin: 5}}>
                             <span style={{color: '#43432C',fontSize: 14, marginTop: 0}}>32%</span>                            
                         </div>
+                        <span style={{color: 'white', fontSize: 12}}>23.5ms</span> */}
                         <CustomCalorieBarChart ref='CustomCalorieBarChart'  setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.calories.expended'}/>
-                        <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Wait Time Today (ms) -</span>
-                    </div>
+                        {/* <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Wait Time Today (ms) -</span>
+                    </div> */}
                     <div className='bottom_section'>
                         <span style={{fontSize: 22, color: '#359971', paddingBottom: 0}}>Heart Rate</span>
                         <img src="../../assets/image/impulse.png" alt="" style={{ margin: 20}}/>
-                        <CustomAreaChart ref='CustomAreaChart' setAuth={this.setAuth} access_token={this.state.access_token}/>                        
+                        <CustomHeartRateAreaChart ref='CustomHeartRateAreaChart' setAuth={this.setAuth} access_token={this.state.access_token}/>                        
                         <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Failure Rate Today -</span>       
                     </div>
                 </div>

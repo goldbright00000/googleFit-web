@@ -1,18 +1,18 @@
 import React from 'react';
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 import axios from 'axios';
 
 const chartData = [
     {name: 'A', uv: 40, pv: 2400, amt: 2400},
     {name: 'B', uv: 30, pv: 1398, amt: 2210},
-    {name: 'C', uv: 20, pv: 9800, amt: 2290},
+    {name: 'C', uv: 10, pv: 9800, amt: 2290},
     {name: 'D', uv: 27.8, pv: 3908, amt: 2000},
     {name: 'E', uv: 18.9, pv: 4800, amt: 2181},
     {name: 'F', uv: 23.9, pv: 3800, amt: 2500},
     {name: 'G', uv: 34.9, pv: 4300, amt: 2100},
 ];
 
-class CustomDistanceBarChart extends React.Component {
+class CustomHeartRateAreaChart extends React.Component {
 
     constructor(props) {
         super(props);
@@ -52,7 +52,7 @@ class CustomDistanceBarChart extends React.Component {
 
 		var endTimeMillis = new Date(year, month, (date+1)).getTime();
 		var startTimeMillis = endTimeMillis - 604800000;
-		var dataTypeName = this.props.dataTypeName;
+		var dataTypeName = 'com.google.heart_rate.bpm';
 		
 		var data = {
 			"aggregateBy": [{"dataTypeName":dataTypeName}],
@@ -91,7 +91,7 @@ class CustomDistanceBarChart extends React.Component {
         }
 
         this.setState({data: chartData});
-        console.log("updated distance data.");
+        console.log("updated weight data.");
         
     }
 
@@ -102,16 +102,16 @@ class CustomDistanceBarChart extends React.Component {
     render() {
         return (
 
-            <BarChart width={270} height={140} data={this.state.data}
-                    margin={{top: 0, right: 20, left: -15, bottom: 0}}>
-                <XAxis stroke='#31BC7F' dataKey="name"/>
+            <AreaChart width={255} height={130} data={this.state.data}
+                    margin={{top: 10, right: 0, left: -30, bottom: 0}}>
+                <XAxis dataKey="name" stroke='#31BC7F' padding={{left: 0, right: 5}}/>
                 <YAxis stroke='#31BC7F'/>
                 <CartesianGrid strokeDasharray="1 1" vertical={false} stroke='#31BC7F'/>
-                <Tooltip cursor={{ stroke: 'white', strokeWidth: 1, fill: 'rgba(255,255,255,0.1)'}} />
-                <Bar dataKey="val" stroke='#31BC7F' fill="rgba(24,53,57,0.8)" />
-            </BarChart>
+                <Tooltip/>
+                <Area type='monotone' dataKey='val' stroke='#31BC7F' fill='#b1a41d' dot={{ stroke: '#31BC7F', strokeWidth: 1, r: 2 }} activeDot={{r: 4}}/>
+            </AreaChart>
 
         );
     }
 }
-export default CustomDistanceBarChart;
+export default CustomHeartRateAreaChart;
