@@ -36,7 +36,7 @@ class CustomProgressSmallChart extends React.Component {
                 endAngle={-270}
                 >
                     {
-                    data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+                    data.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
                 }
                 </Pie>
                 <Tooltip />
