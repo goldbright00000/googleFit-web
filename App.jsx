@@ -58,7 +58,7 @@ class App extends React.Component {
     render() {
 
         return (
-            <GoogleAPI clientId="583659066312-vqjr3agafnsthkd6j9o7ribjb1hmo0ri.apps.googleusercontent.com"
+            <GoogleAPI clientId="583659066312-apbaumdnf5f80ak7v1clgp11q1otq3fq.apps.googleusercontent.com"
 						scope={scope}
 						onUpdateSigninStatus={this.responseGoogle}
 						onInitFailure={ arg => console.log(arg) } >
