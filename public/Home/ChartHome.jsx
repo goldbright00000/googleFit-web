@@ -117,7 +117,7 @@ class ChartHome extends React.Component {
                         </div>
                         <div className='row_section'>
                             <div className='part_section'>
-                                <span style={{paddingLeft: 28, paddingBottom: 30}} className='medium'>Last 7 Days</span>
+                                <span style={{paddingLeft: 28, paddingBottom: 30}} className='medium'>Distance of Last 7 Days</span>
                                 <CustomDistanceBarChart ref='CustomDistanceBarChart' setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.distance.delta'}/>
                             </div>
                             <div className='part_section'>

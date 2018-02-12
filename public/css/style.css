@@ -251,3 +251,9 @@ li:active {
         padding-top: 0;
     }
 }
+
+@media (min-width: 768px) and (max-width: 992px){
+    .container {
+        width: 920px;
+    }
+}
