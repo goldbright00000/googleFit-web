@@ -121,12 +121,12 @@ class ChartHome extends React.Component {
                                 <CustomDistanceBarChart ref='CustomDistanceBarChart' setAuth={this.setAuth} access_token={this.state.access_token} dataTypeName={'com.google.distance.delta'}/>
                             </div>
                             <div className='part_section'>
-                                <span style={{paddingLeft: 28, paddingBottom: 5}} className='medium'>Calories in/out</span>
-                                <CustomPieChart ref='CustomPieChart' />
-                                <div style={{width: 180, height: 20, marginLeft: 40, marginTop: 12, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                                <span style={{paddingLeft: 28, paddingBottom: 5}} className='medium'>3600 Calories</span>
+                                <CustomPieChart ref='CustomPieChart' access_token={this.state.access_token} />
+                                {/* <div style={{width: 180, height: 20, marginLeft: 40, marginTop: 12, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                                     <div style={{color: '#A29349',fontSize: 12, width: '47%', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><div style={{width: 20, height: 20, backgroundColor: '#C9CFD2', paddindRight: 5}}></div><span style={{ paddingTop: 2, paddingLeft: 5}}> Colories in</span></div>
                                     <div style={{color: '#697378',fontSize: 12, width: '47%', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><div style={{width: 20, height: 20, backgroundColor: '#20CC7E', paddindRight: 5}}></div><span style={{ paddingTop: 2, paddingLeft: 5}}> Colories in</span></div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
