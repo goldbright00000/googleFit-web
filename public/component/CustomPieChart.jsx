@@ -105,8 +105,9 @@ class CustomPieChart extends React.Component {
                 cx={120} 
                 cy={62}         
                 outerRadius={58} 
-                strokeWidth={0}
-                fill="#8884d8"
+                strokeWidth={2}
+                fill="#13715A"
+                stroke='#13715A'
                 startAngle={this.state.startAngle}
                 endAngle={this.state.endAngle}
                 >
