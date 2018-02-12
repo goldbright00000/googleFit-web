@@ -3,7 +3,7 @@ import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
 import axios from 'axios';
 
 const chartData = [{name: 'Calories Used', value: 400}, {name: 'Rest Calories', value: 80}];
-const COLORS = ['#27CA7B', '#FAFF5C'];
+const COLORS = ['#27CA7B', 'transparent'];
 
 class CustomPieChart extends React.Component {
 
