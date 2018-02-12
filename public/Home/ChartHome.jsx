@@ -148,10 +148,10 @@ class ChartHome extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div style={{width: '100%', height: 14, display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                            <div style={{width: '33%', height: 7, borderBottom: 1, borderBottomColor: '#359971', borderBottomStyle: 'solid'}}></div>
+                        <div style={{width: '100%', height: 14, display: 'flex', flexDirection: 'row', justifyContent: 'inherit'}}>
+                            <div style={{width: '30%', height: 7, borderBottom: 1, borderBottomColor: '#359971', borderBottomStyle: 'solid'}}></div>
                             <span style={{color: '#A29349',fontSize: 12, }}>Most Active Services</span>
-                            <div style={{width: '33%', height: 7, borderBottom: 1, borderBottomColor: '#359971', borderBottomStyle: 'solid'}}></div>                             
+                            <div style={{width: '30%', height: 7, borderBottom: 1, borderBottomColor: '#359971', borderBottomStyle: 'solid'}}></div>                             
                         </div>
                         <div className='row_section' style={{flexDirection: 'column', alignItems: 'center'}}>
                             <div className='services_section'>

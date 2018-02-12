@@ -64,7 +64,7 @@ button:hover {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding-top: 1.8%;
+    padding-top: 20px;
 }
 
 .top_section {
@@ -220,4 +220,38 @@ li:active {
     height: 54px;
     background-color: #183739;
     border: 1px solid #1A4841;
+}
+
+@media only screen and (max-width: 1200px) {
+    .top_section {
+        width: 60%;
+        margin-bottom: 15px;
+        padding-left: 15px;
+        padding-right: 20px;
+    }
+
+    .row_section {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .bottom_section {
+        width: 60%;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 20px;
+    }
+
+    .section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #app > div > div.container > div:nth-child(3) {
+        padding-top: 0;
+    }
+
+    #app > div > div.container > div:nth-child(2) > div:nth-child(1) > div.row_section.blue_line > div:nth-child(1) > span:nth-child(3) > span.small{
+        float: left;
+    }
 }
