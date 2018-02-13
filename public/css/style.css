@@ -224,7 +224,7 @@ li:active {
 
 @media only screen and (max-width: 1200px) {
     .top_section {
-        width: 60%;
+        width: 100%;
         margin-bottom: 15px;
         padding-left: 15px;
         padding-right: 20px;
@@ -236,7 +236,7 @@ li:active {
     }
 
     .bottom_section {
-        width: 60%;
+        width: 100%;
         padding-left: 30px;
         padding-right: 30px;
         margin-bottom: 20px;
@@ -250,10 +250,22 @@ li:active {
     #app > div > div.container > div:nth-child(3) {
         padding-top: 0;
     }
+
+    #app > div > div.container {
+        width: 100%;
+    }
+
+    .nav li {
+        float: left;
+    }
+
+    .navbar-nav {
+        margin: 0;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 992px){
     .container {
-        width: 920px;
+        /* width: 920px; */
     }
 }

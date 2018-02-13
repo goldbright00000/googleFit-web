@@ -104,14 +104,14 @@ class CustomCalorieBarChart extends React.Component {
         return (
 
             <div className='bottom_section'>
-                <span style={{fontSize: 22, color: '#359971', paddingBottom: 0}}>Calories In vs Out</span>
-                <span style={{color: 'white', fontSize: 32}}>741</span>
-                <span style={{color: '#A29349',fontSize: 12, marginTop: 0}}>Inactive Calories</span>
+                <span style={{fontSize: 22, color: '#359971', paddingBottom: 25}}>Daily Calories Out</span>
+                {/* <span style={{color: 'white', fontSize: 32}}>741</span> */}
+                {/* <span style={{color: '#A29349',fontSize: 12, marginTop: 0}}>Inactive Calories</span> */}
                 {/* <div style={{width: 74, height: 30, backgroundColor: '#F3C031', borderRadius: 15, textAlign: 'center', paddingTop: 5, margin: 5}}>
                     <span style={{color: '#43432C',fontSize: 14, marginTop: 0}}>32%</span>                            
                 </div> */}
-                <span style={{color: 'white', fontSize: 12}}>736</span>
-                <BarChart width={270} height={130} data={this.state.data}
+                {/* <span style={{color: 'white', fontSize: 12}}>736</span> */}
+                <BarChart width={270} height={200} data={this.state.data}
                         margin={{top: 10, right: 20, left: -15, bottom: 0}}>
                     <XAxis stroke='#31BC7F' dataKey="name"/>
                     <YAxis stroke='#31BC7F'/>
@@ -119,7 +119,7 @@ class CustomCalorieBarChart extends React.Component {
                     <Tooltip cursor={{ stroke: 'white', strokeWidth: 1, fill: 'rgba(255,255,255,0.1)'}} />
                     <Bar dataKey="val" stroke='#31BC7F' fill="rgba(24,53,57,0.8)" />
                 </BarChart>
-                <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Wait Time Today (ms) -</span>
+                <span style={{color: '#A29349',fontSize: 12, marginTop: 20}}>- Wait Time Today (ms) -</span>
             </div>
 
             
