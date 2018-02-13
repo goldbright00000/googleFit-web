@@ -228,8 +228,9 @@ class ChartHome extends React.Component {
                     <div className='bottom_section'>
                         <span style={{fontSize: 22, color: '#359971', paddingBottom: 0}}>Heart Rate</span>
                         <img src="../../assets/image/impulse.png" alt="" style={{ margin: 20}}/>
-                        <CustomHeartRateAreaChart ref='CustomHeartRateAreaChart' setAuth={this.setAuth} access_token={this.state.access_token}/>                        
-                        <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Failure Rate Today -</span>       
+                        <span style={{fontSize: 20, color: '#A29349', height: 150}}>Coming Soon</span>
+                        {/* <CustomHeartRateAreaChart ref='CustomHeartRateAreaChart' setAuth={this.setAuth} access_token={this.state.access_token}/>                         */}
+                        {/* <span style={{color: '#A29349',fontSize: 12, marginTop: 10}}>- Failure Rate Today -</span>        */}
                     </div>
                 </div>
             </div>
