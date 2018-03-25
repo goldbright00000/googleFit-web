@@ -1,7 +1,7 @@
 import React from 'react';
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 import axios from 'axios';
-
+import firebase from 'firebase';
 const chartData = [
     {name: 'A', uv: 40, pv: 2400, amt: 2400},
     {name: 'B', uv: 30, pv: 1398, amt: 2210},
@@ -84,14 +84,39 @@ class CustomAreaChart extends React.Component {
         }
 
         var date = this.state.date;
-
+        var client_id='2fP7ys7alZRS6Xtg7SkQmSJ3Wqu1';
         for (let i = 0; i < count; i++) {
             chartData[i].name = date[i];
-            chartData[i].val = result[i];  
+            chartData[i].val = result[i]; 
+            // let dbCon3 = firebase.app().database().ref('/user/'+client_id+'/Weight/data/'+date[i]);
+            // dbCon3.update({
+            //   'weight': result[i]
+            // });   
+        }
+
+        var prev5_date=date[0]-1; if(prev5_date<1){prev5_date=31+prev5_date;}
+        var prev5_weight=75;
+        //let dbCon3 = firebase.app().database().ref('/user/'+client_id+'/Weight/data/'+prev_date);
+               
+        // let prev_dt=dbCon3.on('value', function(snapshot){
+        //     console.log (snapshot.val());
+        // });
+        if (chartData[0].val==0){chartData[0].val=prev5_weight};
+        for (let i = 1; i < count; i++) {
+            if (chartData[i].val==0){chartData[i].val=chartData[i-1].val};
+        }        
+              
+
+        for (let i = 0; i < count; i++) {
+            let dbCon3 = firebase.app().database().ref('/user/'+client_id+'/Weight/data/'+chartData[i].name);
+            dbCon3.update({
+              'weight': chartData[i].val
+            });   
         }
 
         this.setState({data: chartData});
-        console.log("updated weight data.");
+        console.log("updated good weight data.");
+        //console.log(chartData);
         
     }
 

@@ -1,7 +1,16 @@
 import React from 'react';
 import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
 import axios from 'axios';
-
+import firebase from 'firebase';
+var config = {
+    apiKey: "AIzaSyC-w1MNaDzNxltk8NMeQexzUQ1Vo1ngxsU",
+    authDomain: "fitness-project-195723.firebaseio.com",
+    databaseURL: "https://fitness-project-195723.firebaseio.com/",
+    projectId: "fitness-project-195723",
+    storageBucket: "",
+    messagingSenderId: ""
+  };
+  firebase.initializeApp(config);
 const chartData = [{name: 'Calories Used', value: 400}, {name: 'Rest Calories', value: 80}];
 const COLORS = ['#27CA7B', 'transparent'];
 
@@ -78,14 +87,24 @@ class CustomPieChart extends React.Component {
         else {
             this.interval = setInterval(this.forceUpdateHandler, 40);
         }
-        this.setState({data: chartData});
-        console.log("updated calories data.");
-        // console.log(data);
         
+        console.log("updated calories data.");
+        var dd=new Date();
+        var current_date=dd.getDate();
+        var client_id='2fP7ys7alZRS6Xtg7SkQmSJ3Wqu1';
+        let dbCon = firebase.app().database().ref('/user/'+client_id+'/CaloriesIn/data/'+current_date);
+        dbCon.update({
+          'calorie':chartData[1].value
+        });
+        let dbCon1 = firebase.app().database().ref('/user/'+client_id+'/CaloriesOut/data/'+current_date);
+        dbCon1.set({
+            calorie:chartData[0].value
+          });
+        this.setState({data: chartData});
     }
 
     setAuth (error) {
-        // this.props.setAuth();
+         //this.props.setAuth();
     }
 
     forceUpdateHandler () {

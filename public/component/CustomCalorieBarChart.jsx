@@ -1,6 +1,8 @@
 import React from 'react';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import axios from 'axios';
+import firebase from 'firebase'; 
+
 
 const chartData = [
     {name: 'A', uv: 40, pv: 2400, amt: 2400},
@@ -87,17 +89,35 @@ class CustomCalorieBarChart extends React.Component {
 
         for (let i = 0; i < count; i++) {
             chartData[i].name = date[i];
-            chartData[i].val = result[i];  
-        }
-
-        this.setState({data: chartData});
+            chartData[i].val = result[i];
+        } 
+        
         console.log("updated calories data.");
-        // console.log(data);
+        
+        var  client_id='2fP7ys7alZRS6Xtg7SkQmSJ3Wqu1';
+        for (let i = 0; i < count; i++) {
+            let dbCon = firebase.app().database().ref('/user/'+client_id+'/CaloriesIn/data/'+date[i]);
+            dbCon.update({
+              'calorie':3600-result[i] 
+            });
+            let dbCon1 = firebase.app().database().ref('/user/'+client_id+'/CaloriesOut/data/'+date[i]);
+            dbCon1.set({
+                calorie:result[i] 
+              });
+
+            let rate=75-Math.round(Math.random()*10);
+            let dbCon2 = firebase.app().database().ref('/user/'+client_id+'/HeartRate/data/'+date[i]);
+            dbCon2.update({
+              'heartRate':rate
+            }); 
+        }
+        this.setState({data: chartData});
+        
         
     }
 
     setAuth (error) {
-        this.props.setAuth();
+        //this.props.setAuth();
     }
 
     render() {

@@ -91,7 +91,7 @@ class CustomHeartRateAreaChart extends React.Component {
         }
 
         this.setState({data: chartData});
-        console.log("updated weight data.");
+        console.log("updated Heart Rate data.");
         
     }
 
